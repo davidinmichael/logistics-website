@@ -10181,3 +10181,249 @@ p,
 .tracking-table tr:hover {
   background-color: #f9f9f9;
 }
+
+/* Registration form styles */
+.register-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: var(--light);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.register-container h1 {
+  text-align: center;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+.register-form .form-group {
+  margin-bottom: 15px;
+}
+
+.register-form label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+  font-weight: bold;
+}
+
+.register-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Container */
+.shipments-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.shipments-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.shipments-title {
+  color: var(--primary);
+}
+
+.shipments-create-btn {
+  background: var(--primary);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.shipments-create-btn:hover {
+  background: #fff;
+}
+
+/* Table */
+.shipments-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.shipments-table th,
+.shipments-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.shipments-table th {
+  background: var(--light);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Update Button */
+.shipments-update-btn {
+  background: #ffc107;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.shipments-update-btn:hover {
+  background: #e0a800;
+}
+
+/* Empty State */
+.shipments-empty {
+  text-align: center;
+  padding: 15px;
+  color: #888;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .shipments-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+/* Container */
+.shipment-form-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.shipment-form-title {
+  text-align: center;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+/* Form Layout */
+.shipment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Group */
+.shipment-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+.shipment-label {
+  font-weight: 500;
+  color: var(--primary);
+  margin-bottom: 5px;
+}
+
+/* Inputs */
+.shipment-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  background: var(--light);
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.shipment-input:focus {
+  border-color: var(--primary);
+  background: white;
+  outline: none;
+}
+
+/* Button */
+.shipment-submit-btn {
+  background-color: var(--primary);
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.shipment-submit-btn:hover {
+  background-color: #0d5e44;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .shipment-form-container {
+    margin: 20px;
+    padding: 20px;
+  }
+}
+
+.shipment-detail-container {
+  background-color: var(--light);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 700px;
+  margin: 40px auto;
+}
+
+.shipment-info p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.tracking-event-list {
+  list-style: none;
+  padding: 0;
+}
+
+.tracking-event-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.tracking-event-list .event-time {
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.tracking-event-list .event-location {
+  font-style: italic;
+}
+
+.tracking-form .form-group {
+  margin-bottom: 15px;
+}
+
+.tracking-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.tracking-form input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

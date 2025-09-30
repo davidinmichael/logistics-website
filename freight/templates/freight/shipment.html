@@ -1,0 +1,91 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<div class="shipment-form-container">
+   <div class="shipments-header">
+    <h2 class="shipments-title">Add New Shipment</h2>
+    <a href="{% url 'view_shipments' %}" class="shipments-create-btn"
+      >View Shipments</a
+    >
+  </div>
+  <form method="POST" class="shipment-form">
+    {% csrf_token %}
+
+    <div class="shipment-form-group">
+      <label class="shipment-label" for="client">Client Name</label>
+      <input
+        class="shipment-input"
+        type="text"
+        id="client"
+        name="client"
+        required
+        placeholder="e.g., Mary Jane"
+      />
+    </div>
+
+  
+
+    <div class="shipment-form-group">
+      <label class="shipment-label" for="carrier">Carrier</label>
+      <input
+        class="shipment-input"
+        type="text"
+        id="carrier"
+        name="carrier"
+        placeholder="e.g., DHL, FedEx"
+        required
+      />
+    </div>
+
+    <div class="shipment-form-group">
+      <label class="shipment-label" for="origin">Origin</label>
+      <input class="shipment-input" type="text" id="origin" name="origin" placeholder="e.g., China"/>
+    </div>
+
+    <div class="shipment-form-group">
+      <label class="shipment-label" for="destination">Destination</label>
+      <input
+        class="shipment-input"
+        type="text"
+        id="destination"
+        name="destination"
+		placeholder="e.g., Lagos"
+      />
+    </div>
+
+    <div class="shipment-form-group">
+      <label class="shipment-label" for="status">Status</label>
+      <input
+        class="shipment-input"
+        type="text"
+        id="status"
+        name="status"
+        placeholder="e.g., In Transit, Delivered"
+      />
+    </div>
+
+    <div class="shipment-form-group">
+      <label class="shipment-label" for="last_location">Last Location</label>
+      <input
+        class="shipment-input"
+        type="text"
+        id="last_location"
+        name="last_location"
+		placeholder="e.g., U.S Customs"
+      />
+    </div>
+
+    <div class="shipment-form-group">
+      <label class="shipment-label" for="estimated_delivery"
+        >Estimated Delivery</label
+      >
+      <input
+        class="shipment-input"
+        type="date"
+        id="estimated_delivery"
+        name="estimated_delivery"
+      />
+    </div>
+
+    <button type="submit" class="shipment-submit-btn">Save Shipment</button>
+  </form>
+</div>
+{% endblock %}

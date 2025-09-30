@@ -1,5 +1,5 @@
-from django.contrib.auth.hashers import make_password
 from django import forms
+from django.contrib.auth.hashers import make_password
 
 from .models import Account
 
@@ -10,8 +10,6 @@ class LoginForm(forms.Form):
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
-        if not email.lower().endswith("@catobi.com"):
-            raise forms.ValidationError("Only Catobi.com emails are allowed.")
         return email
 
 
@@ -25,8 +23,6 @@ class RegistrationForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
-        if not email.lower().endswith("@catobi.com"):
-            raise forms.ValidationError("Only Catobi.com emails are allowed.")
         if Account.objects.filter(email=email).exists():
             raise forms.ValidationError("An account with this email already exists.")
         return email

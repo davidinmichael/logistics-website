@@ -1,6 +1,7 @@
 from django import forms
-from .models import Shipment, TrackingEvent
 from django.utils import timezone
+
+from .models import Shipment, TrackingEvent
 
 
 class ShipmentForm(forms.ModelForm):
@@ -8,8 +9,6 @@ class ShipmentForm(forms.ModelForm):
         model = Shipment
         fields = [
             "client",
-            "purchase_order",
-            "waybill_number",
             "carrier",
             "origin",
             "destination",

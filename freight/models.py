@@ -1,6 +1,10 @@
 from django.db import models
 
-from .utils import generate_tracking_number
+from .utils import (
+    generate_purchase_order,
+    generate_tracking_number,
+    generate_waybill_number,
+)
 
 
 class Shipment(models.Model):
@@ -28,15 +32,27 @@ class Shipment(models.Model):
     def save(self, *args, **kwargs):
         # Auto-generate tracking number if not provided
         if not self.tracking_number:
-            tracking = f"CNEL{generate_tracking_number()}"
+            tracking = f"ABC{generate_tracking_number()}"
             while Shipment.objects.filter(tracking_number=tracking).exists():
                 tracking = f"CNEL{generate_tracking_number()}"
             self.tracking_number = tracking.upper()
         else:
             self.tracking_number = self.tracking_number.upper()
-        if self.purchase_order:
+
+        if not self.purchase_order:
+            tracking = f"ABC{generate_purchase_order()}"
+            while Shipment.objects.filter(purchase_order=tracking).exists():
+                tracking = f"PO-ABC{generate_purchase_order()}"
+            self.purchase_order = tracking.upper()
+        else:
             self.purchase_order = self.purchase_order.upper()
-        if self.waybill_number:
+
+        if not self.waybill_number:
+            tracking = f"ABC{generate_waybill_number()}"
+            while Shipment.objects.filter(waybill_number=tracking).exists():
+                tracking = f"ABC{generate_waybill_number()}"
+            self.waybill_number = tracking.upper()
+        else:
             self.waybill_number = self.waybill_number.upper()
 
         super().save(*args, **kwargs)

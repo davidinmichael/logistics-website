@@ -1,0 +1,49 @@
+{% extends "base.html" %} {% block content %}
+<div class="shipments-container">
+  <div class="shipments-header">
+    <h2 class="shipments-title">All Shipments</h2>
+    <a href="{% url 'create_shipment' %}" class="shipments-create-btn"
+      >+ Create Shipment</a
+    >
+  </div>
+
+  <table class="shipments-table">
+    <thead>
+      <tr>
+        <th>Tracking #</th>
+        <th>Client</th>
+        <th>Carrier</th>
+        <th>Status</th>
+        <th>Last Location</th>
+        <th>Estimated Delivery</th>
+        <th>Last Updated</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for shipment in shipments %}
+      <tr>
+        <td>{{ shipment.tracking_number }}</td>
+        <td>{{ shipment.client }}</td>
+        <td>{{ shipment.carrier }}</td>
+        <td>{{ shipment.status }}</td>
+        <td>{{ shipment.last_location }}</td>
+        <td>{{ shipment.estimated_delivery }}</td>
+        <td>{{ shipment.last_updated|date:"Y-m-d H:i" }}</td>
+        <td>
+          <a
+            href="{% url 'shipment_details' shipment.id %}"
+            class="shipments-update-btn"
+            >Details</a
+          >
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="8" class="shipments-empty">No shipments found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

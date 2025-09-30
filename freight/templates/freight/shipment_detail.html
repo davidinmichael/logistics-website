@@ -1,0 +1,74 @@
+{% extends 'base.html' %} {% block content %}
+<div class="shipment-detail-container">
+  <div class="shipments-header">
+    <h2 class="shipments-title">Shipment Details</h2>
+    <a href="{% url 'create_shipment' %}" class="shipments-create-btn"
+      >+ Create Shipment</a
+    >
+  </div>
+
+  <!-- Shipment Info -->
+  <div class="shipment-info">
+    <p><strong>Tracking Number:</strong> {{ shipment.tracking_number }}</p>
+    <p><strong>Purchase Order:</strong> {{ shipment.purchase_order }}</p>
+    <p><strong>Waybill Number:</strong> {{ shipment.waybill_number }}</p>
+    <p><strong>Carrier:</strong> {{ shipment.carrier }}</p>
+    <p><strong>Origin:</strong> {{ shipment.origin }}</p>
+    <p><strong>Destination:</strong> {{ shipment.destination }}</p>
+    <p><strong>Last Location:</strong> {{ shipment.last_location }}</p>
+    <p><strong>Status:</strong> {{ shipment.status }}</p>
+    <p><strong>Last Updated:</strong> {{ shipment.last_updated }}</p>
+  </div>
+
+  <hr />
+
+  <!-- Tracking Events List -->
+  <h2>Tracking Events</h2>
+  {% if events %}
+  <ul class="tracking-event-list">
+    {% for event in events %}
+    <li>
+      <span class="event-time">{{ event.timestamp }}</span> —
+      <span class="event-location">{{ event.location }}</span> —
+      <span class="event-status">{{ event.status_description }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No tracking events yet.</p>
+  {% endif %}
+
+  <hr />
+
+  <!-- Add New Tracking Event Form -->
+  <h2>Add Tracking Event</h2>
+  <form
+    action="{% url 'shipment_details' shipment.id %}"
+    method="POST"
+    class="tracking-form"
+  >
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="location">Location</label>
+      <input type="text" name="location" id="location" required />
+    </div>
+
+    <div class="form-group">
+      <label for="status_description">Status Description</label>
+      <input
+        type="text"
+        name="status_description"
+        id="status_description"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="timestamp">Timestamp</label>
+      <input type="datetime-local" name="timestamp" id="timestamp" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Event</button>
+  </form>
+</div>
+{% endblock %}
