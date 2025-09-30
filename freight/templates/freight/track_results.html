@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid py-5">
+    <h1>Tracking Results</h1>
+
+    <!-- Shipment details -->
+    <div class="shipment-info">
+        <p><strong>Tracking Number:</strong> {{ shipment.tracking_number }}</p>
+        <p><strong>Carrier:</strong> {{ shipment.carrier }}</p>
+        <p><strong>Origin:</strong> {{ shipment.origin }}</p>
+        <p><strong>Destination:</strong> {{ shipment.destination }}</p>
+        <p><strong>Status:</strong> {{ shipment.status }}</p>
+        <p><strong>Estimated Delivery:</strong> {{ shipment.estimated_delivery|date:"M d, Y" }}</p>
+    </div>
+
+    <!-- Tracking events table -->
+    <h2 class="tracking-history">Tracking History</h2>
+    {% if events %}
+    <table class="tracking-table">
+        <thead>
+            <tr>
+                <th>Date & Time</th>
+                <th>Location</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{ event.timestamp|date:"M d, Y H:i" }}</td>
+                <td>{{ event.location }}</td>
+                <td>{{ event.status_description }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No tracking events found for this shipment yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

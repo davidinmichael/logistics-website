@@ -31,7 +31,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_browser_reload",
+    "account",
     "core",
+    "freight",
 ]
 
 MIDDLEWARE = [
@@ -146,3 +148,5 @@ DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
 ANYMAIL = {
     "BREVO_API_KEY": os.getenv("EMAIL_API_KEY"),
 }
+
+AUTH_USER_MODEL = "account.Account"

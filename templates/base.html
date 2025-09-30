@@ -27,7 +27,12 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet" />
   </head>
   <body>
-    {% include "partials/nav.html" %} {% block content %} {% endblock content %}
+    {% include "partials/nav.html" %}
+	{% if messages %} {% for message in messages %}
+    <p class="alert alert-{{ message.tags }}" id="alertBox">{{message}}</p>
+    {% endfor %} {% endif %}
+    <div class="toast-box" id="toastBox"></div>
+	{% block content %} {% endblock content %}
     {% include "partials/footer.html" %}
     <a href="#" class="btn btn-lg btn-primary back-to-top"
       ><i class="fa fa-angle-double-up"></i
