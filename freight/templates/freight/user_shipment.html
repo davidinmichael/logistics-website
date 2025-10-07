@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Shipment Update</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f7f7f7; margin: 0; padding: 0;">
+  <div style="max-width: 600px; margin: 30px auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #e0e0e0;">
+    
+    <!-- Header -->
+    <div style="background-color: #fd7e14; color: #ffffff; text-align: center; padding: 20px;">
+      <h1 style="margin: 0; font-size: 24px;">Shipment Update</h1>
+    </div>
+
+    <!-- Content -->
+    <div style="padding: 20px; color: #333333;">
+      <p style="margin: 0 0 10px 0;">Dear {{ client|default:"Customer" }},</p>
+      <p style="margin: 0 0 15px 0;">
+        We wanted to update you on your shipment. Below are the latest details of your order:
+      </p>
+
+      <h2 style="color: #fd7e14; font-size: 20px; margin-bottom: 10px;">Shipment Details</h2>
+
+      <!-- Table -->
+      <table style="border-collapse: collapse; width: 100%; margin-top: 10px;">
+        <tr>
+          <th style="background-color: #f2f2f2; color: #555; text-align: left; padding: 8px 10px; width: 40%;">Tracking Number</th>
+          <td style="padding: 8px 10px; border-bottom: 1px solid #ddd;">{{ shipment.tracking_number }}</td>
+        </tr>
+        <tr>
+          <th style="background-color: #f2f2f2; color: #555; text-align: left; padding: 8px 10px;">Purchase Order</th>
+          <td style="padding: 8px 10px; border-bottom: 1px solid #ddd;">{{ shipment.purchase_order }}</td>
+        </tr>
+        <tr>
+          <th style="background-color: #f2f2f2; color: #555; text-align: left; padding: 8px 10px;">Waybill Number</th>
+          <td style="padding: 8px 10px; border-bottom: 1px solid #ddd;">{{ shipment.waybill_number }}</td>
+        </tr>
+        <tr>
+          <th style="background-color: #f2f2f2; color: #555; text-align: left; padding: 8px 10px;">Carrier</th>
+          <td style="padding: 8px 10px; border-bottom: 1px solid #ddd;">{{ shipment.carrier|default:"N/A" }}</td>
+        </tr>
+        <tr>
+          <th style="background-color: #f2f2f2; color: #555; text-align: left; padding: 8px 10px;">Origin</th>
+          <td style="padding: 8px 10px; border-bottom: 1px solid #ddd;">{{ shipment.origin|default:"N/A" }}</td>
+        </tr>
+        <tr>
+          <th style="background-color: #f2f2f2; color: #555; text-align: left; padding: 8px 10px;">Destination</th>
+          <td style="padding: 8px 10px; border-bottom: 1px solid #ddd;">{{ shipment.destination|default:"N/A" }}</td>
+        </tr>
+        <tr>
+          <th style="background-color: #f2f2f2; color: #555; text-align: left; padding: 8px 10px;">Status</th>
+          <td style="padding: 8px 10px; border-bottom: 1px solid #ddd; font-weight: bold;">{{ shipment.status|default:"Pending" }}</td>
+        </tr>
+        <tr>
+          <th style="background-color: #f2f2f2; color: #555; text-align: left; padding: 8px 10px;">Last Location</th>
+          <td style="padding: 8px 10px; border-bottom: 1px solid #ddd;">{{ shipment.last_location|default:"N/A" }}</td>
+        </tr>
+        <tr>
+          <th style="background-color: #f2f2f2; color: #555; text-align: left; padding: 8px 10px;">Estimated Delivery</th>
+          <td style="padding: 8px 10px; border-bottom: 1px solid #ddd;">
+            {% if shipment.estimated_delivery %}
+              {{ shipment.estimated_delivery|date:"F j, Y" }}
+            {% else %}
+              To be updated
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th style="background-color: #f2f2f2; color: #555; text-align: left; padding: 8px 10px;">Last Updated</th>
+          <td style="padding: 8px 10px;">{{ shipment.last_updated|date:"F j, Y, g:i A" }}</td>
+        </tr>
+      </table>
+
+      <p style="margin-top: 20px;">
+        You can check real-time updates anytime by visiting
+        <a href="https://{{ url }}" style="color: #fd7e14; text-decoration: none;">{{ url }}</a>.
+      </p>
+
+      <p style="margin-top: 10px;">Thank you for choosing Planet Plus Express.</p>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align: center; background-color: #fafafa; padding: 15px; font-size: 13px; color: #666;">
+      <p style="margin: 0;">&copy; {{ now|date:"Y" }} Planet Pluse Xpress. All rights reserved.</p>
+      <p style="margin: 5px 0 0 0;">
+        <a href="https://{{ url }}" style="color: #fd7e14; text-decoration: none;">Visit our website</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

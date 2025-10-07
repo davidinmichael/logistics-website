@@ -9,6 +9,7 @@ from .utils import (
 
 class Shipment(models.Model):
     client = models.CharField(max_length=100, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
     tracking_number = models.CharField(max_length=50, unique=True)
     purchase_order = models.CharField(max_length=50, unique=True)
     waybill_number = models.CharField(max_length=50, unique=True)
@@ -32,25 +33,25 @@ class Shipment(models.Model):
     def save(self, *args, **kwargs):
         # Auto-generate tracking number if not provided
         if not self.tracking_number:
-            tracking = f"ABC{generate_tracking_number()}"
+            tracking = f"PPX{generate_tracking_number()}"
             while Shipment.objects.filter(tracking_number=tracking).exists():
-                tracking = f"CNEL{generate_tracking_number()}"
+                tracking = f"PPX{generate_tracking_number()}"
             self.tracking_number = tracking.upper()
         else:
             self.tracking_number = self.tracking_number.upper()
 
         if not self.purchase_order:
-            tracking = f"ABC{generate_purchase_order()}"
+            tracking = f"PPX{generate_purchase_order()}"
             while Shipment.objects.filter(purchase_order=tracking).exists():
-                tracking = f"PO-ABC{generate_purchase_order()}"
+                tracking = f"PO-PPX{generate_purchase_order()}"
             self.purchase_order = tracking.upper()
         else:
             self.purchase_order = self.purchase_order.upper()
 
         if not self.waybill_number:
-            tracking = f"ABC{generate_waybill_number()}"
+            tracking = f"PPX{generate_waybill_number()}"
             while Shipment.objects.filter(waybill_number=tracking).exists():
-                tracking = f"ABC{generate_waybill_number()}"
+                tracking = f"PPX{generate_waybill_number()}"
             self.waybill_number = tracking.upper()
         else:
             self.waybill_number = self.waybill_number.upper()

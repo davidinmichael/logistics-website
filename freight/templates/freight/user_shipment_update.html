@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Shipment Update</title>
+  </head>
+  <body
+    style="
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    "
+  >
+    <table
+      align="center"
+      width="100%"
+      cellpadding="0"
+      cellspacing="0"
+      style="
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+      "
+    >
+      <tr>
+        <td
+          style="
+            background-color: #fd7e14;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+          "
+        >
+          <h2 style="margin: 0">Shipment Update</h2>
+        </td>
+      </tr>
+
+      <tr>
+        <td style="padding: 20px; color: #333333">
+          <p style="font-size: 16px">Hello {{ client }},</p>
+
+          <p style="font-size: 15px; line-height: 1.6">
+            Your shipment with tracking number
+            <strong>{{ shipment.tracking_number }}</strong> has been updated.
+          </p>
+
+          <table
+            width="100%"
+            cellpadding="6"
+            cellspacing="0"
+            style="border-collapse: collapse; margin: 20px 0"
+          >
+            <tr>
+              <td
+                style="
+                  border: 1px solid #ddd;
+                  font-weight: bold;
+                  width: 40%;
+                  background-color: #f1f1f1;
+                "
+              >
+                Status
+              </td>
+              <td style="border: 1px solid #ddd">
+                {{ event.status_description }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="
+                  border: 1px solid #ddd;
+                  font-weight: bold;
+                  background-color: #f1f1f1;
+                "
+              >
+                Location
+              </td>
+              <td style="border: 1px solid #ddd">{{ event.location }}</td>
+            </tr>
+            <tr>
+              <td
+                style="
+                  border: 1px solid #ddd;
+                  font-weight: bold;
+                  background-color: #f1f1f1;
+                "
+              >
+                Last Updated
+              </td>
+              <td style="border: 1px solid #ddd">{{ event.timestamp }}</td>
+            </tr>
+            <tr>
+              <td
+                style="
+                  border: 1px solid #ddd;
+                  font-weight: bold;
+                  background-color: #f1f1f1;
+                "
+              >
+                Destination
+              </td>
+              <td style="border: 1px solid #ddd">{{ shipment.destination }}</td>
+            </tr>
+            <tr>
+              <td
+                style="
+                  border: 1px solid #ddd;
+                  font-weight: bold;
+                  background-color: #f1f1f1;
+                "
+              >
+                Estimated Delivery
+              </td>
+              <td style="border: 1px solid #ddd">
+                {{ shipment.estimated_delivery }}
+              </td>
+            </tr>
+          </table>
+
+          <p style="font-size: 14px; line-height: 1.6">
+            You can continue to track your shipment on our website using your
+            tracking number.
+          </p>
+
+          <div style="text-align: center; margin-top: 20px">
+            <a
+              href="https://{{ url }}"
+              style="
+                background-color: #fd7e14;
+                color: #ffffff;
+                text-decoration: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                display: inline-block;
+              "
+            >
+              Track Shipment
+            </a>
+          </div>
+
+          <p style="font-size: 13px; color: #777777; margin-top: 30px">
+            Thank you for choosing Planet Pluse Xpress.
+          </p>
+        </td>
+      </tr>
+
+      <tr>
+        <td
+          style="
+            background-color: #f1f1f1;
+            color: #555555;
+            text-align: center;
+            padding: 10px;
+            font-size: 13px;
+          "
+        >
+          &copy; {{ now|date:"Y" }} Planet Pluse Xpress. All rights reserved.
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -10,6 +10,7 @@ class ShipmentForm(forms.ModelForm):
         fields = [
             "client",
             "carrier",
+            "email",
             "origin",
             "destination",
             "status",

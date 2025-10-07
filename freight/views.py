@@ -3,8 +3,11 @@ import os
 import requests
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
+from django.template.loader import render_to_string
 from django.views import View
 from dotenv import load_dotenv
+
+from core.utils import send_email
 
 from .forms import ShipmentForm, TrackingEventForm
 from .models import Shipment, TrackingEvent
@@ -51,6 +54,16 @@ class CreateShipment(View):
         forms = ShipmentForm(data=request.POST)
         if forms.is_valid():
             shipment = forms.save()
+            email = forms.cleaned_data.get("email", "")
+            name = forms.cleaned_data.get("client", "")
+            if email:
+                context = {
+                    "client": name,
+                    "url": "planetplusexpress.com",
+                    "shipment": shipment,
+                }
+                template = render_to_string("freight/user_shipment.html", context)
+                send_email(email, "Shipment Update", template)
             messages.success(request, "Shipment successfully added!")
             return redirect("shipment_details", pk=shipment.pk)
         messages.error(request, "Error! Confirm the details and try again.")
@@ -83,6 +96,18 @@ def shipment_detail(request, pk):
             shipment.last_location = event.location
             shipment.status = event.status_description
             shipment.save()
+
+            email = shipment.email
+
+            if email:
+                context = {
+                    "client": shipment.client,
+                    "url": "planetplusexpress.com",
+                    "shipment": shipment,
+                    "event": event,
+                }
+                template = render_to_string("freight/user_shipment_update.html", context)
+                send_email(email, "Shipment Update", template)
 
             return redirect("shipment_details", pk=shipment.pk)
     else:
